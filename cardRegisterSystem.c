@@ -137,9 +137,9 @@ void saveCard(const Card *card) {
                 card->cardNumber, card->name,
                 card->expiryDate, card->pinHash, card->role);
         fclose(file);
-        printf("✅ Registration successful.\n");
+        printf("Registration successful.\n");
     } else {
-        printf("❌ Error: Unable to write to file.\n");
+        printf("Error: Unable to write to file.\n");
     }
 }
 
@@ -182,13 +182,13 @@ bool verifyPIN(const char *storedHash) {
 
 bool authenticate(Card *card) {
     if (isCardExpired(card->expiryDate)) {
-        printf("❌ Access Denied: Card expired.\n");
+        printf("Access Denied: Card expired.\n");
         log_attempt(card, "Access Denied - Expired");
         return false;
     }
 
     if (!verifyPIN(card->pinHash)) {
-        printf("❌ Access Denied: Incorrect PIN.\n");
+        printf("Access Denied: Incorrect PIN.\n");
         log_attempt(card, "Access Denied - Incorrect PIN");
         return false;
     }
